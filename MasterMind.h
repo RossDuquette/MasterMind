@@ -9,6 +9,7 @@ typedef enum eColour
 	R,
 	G,
 	B,
+	O,
 	Y,
 	P,
 	W

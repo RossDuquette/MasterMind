@@ -4,7 +4,7 @@ int main()
 {
 	//Variable Initialization
 	int counter[4];
-	counter[0] = R; counter[1] = G; counter[2] = B; counter[3] = Y; //initial guess, used to iterate through combinations
+	counter[0] = R; counter[1] = G; counter[2] = B; counter[3] = O; //initial guess, used to iterate through combinations
 	bool solved = false;
 	vector<MM_Guess> prevGuesses; //stores all previous guesses
 	MM_Guess curGuess; //stores info for current guess
@@ -24,6 +24,10 @@ int main()
 	}
 	
 	PrintGuesses(prevGuesses);
+	
+	system("PAUSE");
+	
+	return 0;
 }
 
 MM_Guess ReadColours()
@@ -31,7 +35,7 @@ MM_Guess ReadColours()
 	char c[4];
 	int colours[4];
 	MM_Guess ret;
-	cout << "Input 4 different colours (R G B Y P W):\n";
+	cout << "Input 4 different colours (R G B O Y P W):\n";
 	cin >> c[0] >> c[1] >> c[2] >> c[3];
 	if (c[0] != c[1] && c[0] != c[2] && c[0] != c[3] && c[1] != c[2] && c[1] != c[3] && c[2] != c[3])
 	{
@@ -42,6 +46,7 @@ MM_Guess ReadColours()
 				case 'R': colours[i] = R; break;
 				case 'G': colours[i] = G; break;
 				case 'B': colours[i] = B; break;
+				case 'O': colours[i] = O; break;
 				case 'Y': colours[i] = Y; break;
 				case 'P': colours[i] = P; break;
 				case 'W': colours[i] = W; break;
@@ -84,16 +89,16 @@ bool GetNextGuess(int* colours, vector<MM_Guess> prevGuesses)
 	while (!done)
 	{
 		//iterate colours
-		colours[3] = (colours[3] + 1) % 6;
+		colours[3] = (colours[3] + 1) % 7;
 		if (colours[3] == 0) //addition carry over
 		{
-			colours[2] = (colours[2] + 1) % 6;
+			colours[2] = (colours[2] + 1) % 7;
 			if (colours[2] == 0)
 			{
-				colours[1] = (colours[1] + 1) % 6;
+				colours[1] = (colours[1] + 1) % 7;
 				if (colours[1] == 0)
 				{
-					colours[0] = (colours[0] + 1) % 6;
+					colours[0] = (colours[0] + 1) % 7;
 					if (colours[0] == 0) //cycled through all possible combinations
 						return false;
 				}
@@ -153,6 +158,7 @@ void PrintGuesses(vector<MM_Guess> prevGuesses)
 				case R: cout << "R "; break;
 				case G: cout << "G "; break;
 				case B: cout << "B "; break;
+				case O: cout << "O "; break;
 				case Y: cout << "Y "; break;
 				case P: cout << "P "; break;
 				case W: cout << "W "; break;
