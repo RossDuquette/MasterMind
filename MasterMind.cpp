@@ -135,7 +135,7 @@ bool GetNextGuess(int* colours, vector<MM_Guess> prevGuesses)
 						}
 					}
 				}
-				if (correctSpot < 0 || wrongSpot < 0)
+				if (correctSpot != 0 || wrongSpot != 0)
 					break;
 			}
 			if (i == prevGuesses.size())
